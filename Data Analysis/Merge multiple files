@@ -1,0 +1,26 @@
+import pandas as pd
+import os
+
+folder = "folder with excel files"
+
+excel_files = [file for file in os.listdir(folder) if file.endswith('.xlsx')]
+
+combine = pd.concat([pd.read_excel(os.path.join(folder,file)) for file in excel_files], ignore_index = True)
+
+print(combine.describe())
+print(combine.info())
+print(combine.head())
+
+                    
+combine.to_excel("")
+
+#os functions (find, read, write, move or inspect
+
+#os.listdir(), finds directories of multiple folders and retrive the files inside
+#os.path.exists(), checks if path exists
+#os.remove() , removes the folder of files
+#os.path.join(folder,file), joins the folders and iles names safely
+#os.basename(), finds the last subdirectory of the path
+#os.walk, iterate over multiple subfolders/subdirectories, to get files on different folders
+#example :(first declare variable to store data , all_df = []) ,for root(it is the folder), dir, files in os.walk(path):for file in files: if file.endswith():file_path= os.path.join(folder,file) try: df=pd.read_excel(file_path) df["source"]=file(ofptional), df["folder"]=os.path.basename(root) all_df.append(df)
+
